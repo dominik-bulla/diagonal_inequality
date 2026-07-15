@@ -3,7 +3,7 @@ requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "racial_structure_of_poverty"
+name = "diagonal_inequality"
 version = "0.1.0"
 description = "Analysis pipeline for wealth-by-ethnicity research"
 requires-python = ">=3.10"

@@ -30,11 +30,12 @@ The project implements a fully reproducible pipeline that:
 
 .
 ├── data/               # must create
-│   ├── DHC/            # must create 
-│   └── MICS/           # must create 
-├── results/            # must create
-│   ├── tables/         # must create 
-│   └── graphs/         # must create 
+│   ├── DHC/            # Place downloaded DHS datasets here 
+│   └── MICS/           # Place downloaded MICS datasets here 
+│   └── processed/      
+├── results/            
+│   ├── tables/          
+│   └── graphs/          
 ├── src/
 │   └── diagonal_inequality/
 ├── run_analysis.py      

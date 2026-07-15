@@ -90,14 +90,23 @@ OUT_PAIRWISE_RESULTS = RESULTS_TABLE_DIR / "06.{i}_pairwise_tests_{country}.csv"
 OUT_ETHNIC_WEALTH_GAPS_MAX_PDF = RESULTS_GRAPHS_DIR / "01.1_ethnic_wealth_gaps_(max).pdf"
 OUT_ETHNIC_WEALTH_GAPS_MAX_TIFF = RESULTS_GRAPHS_DIR / "01.1_ethnic_wealth_gaps_(max).tiff"
 OUT_ETHNIC_WEALTH_GAPS_MAX_PNG = RESULTS_GRAPHS_DIR / "01.1_ethnic_wealth_gaps_(max).png"
+OUT_ETHNIC_WEALTH_GAPS_MAX_TABLE = (
+    RESULTS_TABLE_DIR / f"07.1_graphs_wealth_gaps_max_table_{RUN_DATE}.csv"
+)
 
 OUT_ETHNIC_WEALTH_GAPS_AVG_PDF = RESULTS_GRAPHS_DIR / "01.2_ethnic_wealth_gaps_(avg).pdf"
 OUT_ETHNIC_WEALTH_GAPS_AVG_TIFF = RESULTS_GRAPHS_DIR / "01.2_ethnic_wealth_gaps_(avg).tiff"
 OUT_ETHNIC_WEALTH_GAPS_AVG_PNG = RESULTS_GRAPHS_DIR / "01.2_ethnic_wealth_gaps_(avg).png"
+OUT_ETHNIC_WEALTH_GAPS_AVG_TABLE = (
+    RESULTS_TABLE_DIR / f"07.2_graphs_wealth_gaps_avg_table_{RUN_DATE}.csv"
+)
 
 OUT_ETHNIC_WEALTH_GAPS_GINI_PDF = RESULTS_GRAPHS_DIR / "01.3_ethnic_wealth_gaps_(gini).pdf"
 OUT_ETHNIC_WEALTH_GAPS_GINI_TIFF = RESULTS_GRAPHS_DIR / "01.3_ethnic_wealth_gaps_(gini).tiff"
 OUT_ETHNIC_WEALTH_GAPS_GINI_PNG = RESULTS_GRAPHS_DIR / "01.3_ethnic_wealth_gaps_(gini).png"
+OUT_ETHNIC_WEALTH_GAPS_GINI_TABLE = (
+    RESULTS_TABLE_DIR / f"07.3_graphs_wealth_gaps_gini_table_{RUN_DATE}.csv"
+)
 
 OUT_SPINE_PLOT_PDF = RESULTS_GRAPHS_DIR / "02.{i}_spine_plot_{country}.pdf"
 OUT_SPINE_PLOT_TIFF = RESULTS_GRAPHS_DIR / "02.{i}_spine_plot_{country}.tiff"
@@ -437,8 +446,12 @@ def render_path(template: Path, **kwargs: str | int) -> Path:
     """Render a parameterized Path template such as '{country}' or '{i}'."""
     return Path(str(template).format(**kwargs))
 
-
 def ensure_output_dirs() -> None:
     """Create standard output directories if they do not already exist."""
-    for path in (DATA_DIR, PROCESSED_DIR, RESULTS_TABLE_DIR, RESULTS_GRAPHS_DIR):
+    for path in (
+        DATA_DIR,
+        PROCESSED_DIR,
+        RESULTS_TABLE_DIR,
+        RESULTS_GRAPHS_DIR,
+    ):
         path.mkdir(parents=True, exist_ok=True)

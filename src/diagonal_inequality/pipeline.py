@@ -30,7 +30,8 @@ from .cleaning import (
     retain_large_ethnic_groups,
     validate_final_data,
 )
-from .config import MIN_ETHNICITY_N
+from .config import MIN_ETHNICITY_N, PROCESSED_DIR
+
 from .export_graphs import (
     graphs_heatmaps,
     graphs_relative_representation_poorest,
@@ -96,6 +97,26 @@ def _run_analyses(data: DataDict) -> None:
 
 
 
+def _save_data(data: dict[str, Any]) -> None:
+    """Save one processed CSV dataset for each country."""
+
+    PROCESSED_DIR.mkdir(
+        parents=True,
+        exist_ok=True,
+    )
+
+    for country, info in data.items():
+        dataset = info["dataset"]
+
+        output_path = PROCESSED_DIR / f"{country}.csv"
+
+        dataset.to_csv(
+            output_path,
+            index=False,
+        )
+
+
+
 def _export_tables(
     data: DataDict,
     country_overviews: Any,
@@ -140,6 +161,7 @@ def run_pipeline() -> dict[str, Any]:
     country_overviews, num_ethnicities_per_country, ethnicities_retained = _clean_and_prepare_data(data)
 
     _run_analyses(data)
+    _save_data(data)
     _export_tables(data, country_overviews, num_ethnicities_per_country, ethnicities_retained)
     _export_graphs(data)
 

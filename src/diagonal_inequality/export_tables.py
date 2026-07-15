@@ -12,6 +12,9 @@ from .config import (
     OUT_PAIRWISE_RESULTS,
     PROCESSED_DIR,
     RESULTS_TABLE_DIR,
+    OUT_ETHNIC_WEALTH_GAPS_MAX_TABLE,
+    OUT_ETHNIC_WEALTH_GAPS_AVG_TABLE,
+    OUT_ETHNIC_WEALTH_GAPS_GINI_TABLE
 )
 
 
@@ -132,3 +135,32 @@ def table_pairwise_results(data: dict[str, dict[str, Any]]) -> None:
             index=False,
             encoding="utf-8-sig",
         )
+
+
+def graphs_wealth_gaps_max_results(datapoints: pd.DataFrame) -> None:
+    """
+    Table the maximum absolute pairwise ethnic wealth gap for each country.
+    """
+    datapoints.to_csv(OUT_ETHNIC_WEALTH_GAPS_MAX_TABLE, index=False, encoding="utf-8-sig")
+
+
+def graphs_wealth_gaps_avg_results(datapoints: pd.DataFrame) -> None:
+    """
+    Table the average absolute pairwise ethnic wealth gap for each country.
+    """
+    datapoints.to_csv(OUT_ETHNIC_WEALTH_GAPS_AVG_TABLE, index=False, encoding="utf-8-sig")
+
+
+def graphs_wealth_gaps_gini_results(datapoints: pd.DataFrame) -> None:
+    """
+    Table the gini-based pairwise ethnic wealth gap for each country.
+    """
+    datapoints.to_csv(OUT_ETHNIC_WEALTH_GAPS_GINI_TABLE, index=False, encoding="utf-8-sig")
+
+
+
+
+
+
+
+

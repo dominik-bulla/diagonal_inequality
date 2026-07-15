@@ -35,6 +35,13 @@ from .config import (
 )
 
 
+from .export_tables import (
+    graphs_wealth_gaps_max_results,
+    graphs_wealth_gaps_avg_results,
+    graphs_wealth_gaps_gini_results
+)
+
+
 # Keys added later in the pipeline that are not country-level analysis objects.
 SUMMARY_KEYS = {
     "datapoints",
@@ -102,7 +109,7 @@ def _build_country_bar_plot(
     value_col: str,
     error_col: str,
     ylabel: str,
-    title: str,
+    title: str | None = None,
     *,
     figsize: tuple[float, float] = (10.5, 6.5),
 ) -> tuple[plt.Figure, plt.Axes]:
@@ -120,7 +127,8 @@ def _build_country_bar_plot(
         error_kw={"ecolor": "0.3", "elinewidth": 1.0, "capsize": 3},
     )
     ax.set_ylabel(ylabel)
-    ax.set_title(title)
+    if title is not None:
+        ax.set_title(title)
     ax.set_xticks(range(len(summary)))
     ax.set_xticklabels(summary["country"], rotation=45, ha="right")
     _finalize_axes(ax)
@@ -178,17 +186,19 @@ def graphs_wealth_gaps_max(data: dict[str, dict[str, Any]]) -> None:
             {
                 "country": country,
                 "max_gap": float(max_row["abs_gap_mean"]),
+                "gap_se": float(max_row["gap_se"]),
                 "ci95": float(1.96 * max_row["gap_se"]),
             }
         )
 
     summary = pd.DataFrame(records).sort_values("max_gap", ascending=False).reset_index(drop=True)
+    graphs_wealth_gaps_max_results(summary)
     fig, _ = _build_country_bar_plot(
         summary,
         value_col="max_gap",
         error_col="ci95",
         ylabel="Maximum absolute pairwise difference in mean wealth quintile rank",
-        title="Maximum pairwise ethnic wealth gaps across countries (95% CI)",
+#        title="Maximum pairwise ethnic wealth gaps across countries (95% CI)",
     )
     _save_figure(fig, OUT_ETHNIC_WEALTH_GAPS_MAX_PDF, OUT_ETHNIC_WEALTH_GAPS_MAX_TIFF, OUT_ETHNIC_WEALTH_GAPS_MAX_PNG)
 
@@ -212,12 +222,13 @@ def graphs_wealth_gaps_avg(data: dict[str, dict[str, Any]]) -> None:
         )
 
     summary = pd.DataFrame(records).sort_values("avg_gap", ascending=False).reset_index(drop=True)
+    graphs_wealth_gaps_avg_results(summary)
     fig, _ = _build_country_bar_plot(
         summary,
         value_col="avg_gap",
         error_col="std_gap",
         ylabel="Average absolute pairwise difference in mean wealth quintile rank",
-        title="Average pairwise ethnic wealth gaps across countries (±1 SD)",
+#        title="Average pairwise ethnic wealth gaps across countries (±1 SD)",
     )
     _save_figure(fig, OUT_ETHNIC_WEALTH_GAPS_AVG_PDF, OUT_ETHNIC_WEALTH_GAPS_AVG_TIFF, OUT_ETHNIC_WEALTH_GAPS_AVG_PNG)
 
@@ -263,12 +274,13 @@ def graphs_wealth_gaps_gini(data: dict[str, dict[str, Any]]) -> None:
         .sort_values("gini_ethnic_inequality", ascending=False)
         .reset_index(drop=True)
     )
+    graphs_wealth_gaps_gini_results(summary)
     fig, _ = _build_country_bar_plot(
         summary,
         value_col="gini_ethnic_inequality",
         error_col="ci95",
         ylabel="Gini coefficient of mean wealth quintile rank across ethnic groups",
-        title="Gini coefficients of ethnic wealth inequality across countries (95% CI)",
+#        title="Gini coefficients of ethnic wealth inequality across countries (95% CI)",
     )
     _save_figure(fig, OUT_ETHNIC_WEALTH_GAPS_GINI_PDF, OUT_ETHNIC_WEALTH_GAPS_GINI_TIFF, OUT_ETHNIC_WEALTH_GAPS_GINI_PNG)
 
@@ -294,7 +306,10 @@ def spine_plot_country(
     valid_rows = row_totals.notna()
     crosstab = crosstab.loc[valid_rows]
     row_totals = row_totals.loc[valid_rows]
+
     proportions = crosstab.div(row_totals, axis=0).fillna(0.0)
+    proportions = proportions.sort_values(by="poorest", ascending=False)
+    row_totals = row_totals.loc[proportions.index]
 
     widths = row_totals / row_totals.sum()
     positions = widths.cumsum() - widths
@@ -322,7 +337,7 @@ def spine_plot_country(
     ax.set_xticks(centers.to_numpy(float))
     ax.set_xticklabels(proportions.index.tolist(), rotation=45, ha="right")
     ax.set_ylabel("Share within ethnicity")
-    ax.set_title(f"Wealth distribution by ethnicity: {country}")
+#    ax.set_title(f"Wealth distribution by ethnicity: {country}")
     ax.set_ylim(0, 1)
     ax.set_yticks(np.linspace(0, 1, 6))
     _finalize_axes(ax)
