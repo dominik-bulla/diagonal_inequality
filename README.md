@@ -30,9 +30,9 @@ The project implements a fully reproducible pipeline that:
 
 ```text
 .
-├── data/
-│   ├── DHS/
-│   ├── MICS/
+├── data/         # must create
+│   ├── DHS/      # must create
+│   ├── MICS/     # must create
 │   └── processed/
 ├── results/
 │   ├── tables/
