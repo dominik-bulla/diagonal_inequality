@@ -28,19 +28,22 @@ The project implements a fully reproducible pipeline that:
 
 ## Project Structure
 
+```text
 .
 ├── data/
-│   ├── DHC/
-│   └── MICS/
-│   └── processed/      
-├── results/            
-│   ├── tables/          
-│   └── graphs/          
+│   ├── DHS/
+│   ├── MICS/
+│   └── processed/
+├── results/
+│   ├── tables/
+│   └── graphs/
 ├── src/
 │   └── diagonal_inequality/
-├── run_analysis.py      
+├── run_analysis.py
 ├── requirements.txt
 └── README.md
+```
+
 
 ---
 
