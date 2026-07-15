@@ -54,3 +54,8 @@ Thumbs.db
 # Environment variables
 # =========================
 .env
+
+# =========================
+# Miscellaneous
+# =========================
+miscellaneous/
