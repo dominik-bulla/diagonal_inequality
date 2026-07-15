@@ -29,9 +29,9 @@ The project implements a fully reproducible pipeline that:
 ## Project Structure
 
 .
-├── data/               # must create
-│   ├── DHC/            # Place downloaded DHS datasets here 
-│   └── MICS/           # Place downloaded MICS datasets here 
+├── data/
+│   ├── DHC/
+│   └── MICS/
 │   └── processed/      
 ├── results/            
 │   ├── tables/          
