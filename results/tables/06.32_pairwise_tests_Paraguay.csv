@@ -1,0 +1,7 @@
+﻿country,ethnicity_i,ethnicity_j,gap_mean,gap_se,z,p_raw,p_holm,significant_0.05
+Paraguay,Indigenous,Guaraní speaker,-1.258556837376089,0.07932453222501276,-15.865921954711993,0.0,0.0,True
+Paraguay,Indigenous,Bilingual (Guaraní/Spanish),-2.2745000892710685,0.08747392493634219,-26.002035359980717,0.0,0.0,True
+Paraguay,Indigenous,Spanish speaker,-2.8891585579808168,0.08314467818081825,-34.748568653999016,0.0,0.0,True
+Paraguay,Guaraní speaker,Bilingual (Guaraní/Spanish),-1.0159432518949796,0.0743834478287585,-13.658189846668959,0.0,0.0,True
+Paraguay,Guaraní speaker,Spanish speaker,-1.6306017206047279,0.07957644333726366,-20.491010306829807,0.0,0.0,True
+Paraguay,Bilingual (Guaraní/Spanish),Spanish speaker,-0.6146584687097483,0.07671588310029145,-8.012140952691622,1.1102230246251565e-15,1.1102230246251565e-15,True

@@ -1,0 +1,2 @@
+﻿country,ethnicity_i,ethnicity_j,gap_mean,gap_se,z,p_raw,p_holm,significant_0.05
+Cuba,Negro,White,-0.09061069378514519,0.11441478585233396,-0.7919491620784851,0.42839031962826435,0.42839031962826435,False

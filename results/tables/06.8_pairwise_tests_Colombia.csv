@@ -1,0 +1,7 @@
+﻿country,ethnicity_i,ethnicity_j,gap_mean,gap_se,z,p_raw,p_holm,significant_0.05
+Colombia,Indigenous,Raizal From Archipelago (San Andres),-0.6913017807051471,0.3787127311151098,-1.8253988416751321,0.0679408639819048,0.2038225919457144,False
+Colombia,Indigenous,Black/Mulato/Afro-Colombian/Afro-Descendant,-0.730386716528147,0.07576893383408094,-9.639659416714906,0.0,0.0,True
+Colombia,Indigenous,None Of The Above,-1.3080567642667742,0.058484240319954646,-22.365969996543996,0.0,0.0,True
+Colombia,Raizal From Archipelago (San Andres),Black/Mulato/Afro-Colombian/Afro-Descendant,-0.03908493582299988,0.37855921823929456,-0.10324655678650926,0.9177672903466656,0.9177672903466656,False
+Colombia,Raizal From Archipelago (San Andres),None Of The Above,-0.6167549835616271,0.3752948373340787,-1.6433878705680307,0.10030270809928332,0.2038225919457144,False
+Colombia,Black/Mulato/Afro-Colombian/Afro-Descendant,None Of The Above,-0.5776700477386272,0.06433652426336266,-8.978881814844785,0.0,0.0,True

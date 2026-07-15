@@ -1,0 +1,4 @@
+﻿country,ethnicity_i,ethnicity_j,gap_mean,gap_se,z,p_raw,p_holm,significant_0.05
+South Africa,Black/African,Coloured,-1.1980878389896805,0.08445743429435826,-14.18570015771498,0.0,0.0,True
+South Africa,Black/African,White,-2.077464241844585,0.06793902095136313,-30.578365904504583,0.0,0.0,True
+South Africa,Coloured,White,-0.8793764028549043,0.0746317170093345,-11.782877817817281,0.0,0.0,True

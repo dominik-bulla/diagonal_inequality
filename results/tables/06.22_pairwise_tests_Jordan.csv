@@ -1,0 +1,2 @@
+﻿country,ethnicity_i,ethnicity_j,gap_mean,gap_se,z,p_raw,p_holm,significant_0.05
+Jordan,Syrian,Jordanian,-1.4239116036635622,0.058300069847468036,-24.423840441168913,0.0,0.0,True

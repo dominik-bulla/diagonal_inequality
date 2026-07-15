@@ -1,0 +1,2 @@
+﻿country,ethnicity_i,ethnicity_j,gap_mean,gap_se,z,p_raw,p_holm,significant_0.05
+North Macedonia,Albanian,Macedonian,-0.979459754195739,0.1516918297018736,-6.456905135370263,1.0686584950292399e-10,1.0686584950292399e-10,True
