@@ -1,0 +1,41 @@
+﻿dataset,n_ethnicities,n_eth_ge_100
+Afghanistan,8,8
+Albania,6,3
+Belize,4,4
+Benin,8,8
+Burkina Faso,14,10
+Central African Republic,9,9
+Chad,20,19
+Colombia,6,4
+Congo,8,6
+Cuba,2,2
+Côte d’Ivoire,81,21
+Ethiopia,45,18
+Gabon,8,7
+Gambia,10,9
+Georgia,3,3
+Ghana,8,8
+Guatemala,4,3
+Guinea,6,6
+Guinea-Bissau,8,8
+Guyana,4,4
+Honduras,6,6
+Jordan,5,2
+Kazakhstan,2,2
+Kenya,12,12
+Kyrgyzstan,3,3
+Lao PDR,4,4
+Malawi,8,6
+Mali,14,11
+Nepal,9,9
+Nigeria,194,12
+North Macedonia,2,2
+Paraguay,4,4
+Philippines,40,27
+Senegal,7,6
+Serbia,4,3
+Sierra Leone,11,10
+South Africa,4,3
+Suriname,6,6
+Togo,6,6
+Uganda,57,26

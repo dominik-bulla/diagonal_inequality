@@ -1,0 +1,321 @@
+﻿dataset,ethnicity,n_unweighted
+Afghanistan,Pashtun,12491
+Afghanistan,Tajik,8968
+Afghanistan,Hazara,2724
+Afghanistan,Uzbek,2042
+Afghanistan,Nuristani,1255
+Afghanistan,Turkmen,632
+Afghanistan,Pashai,525
+Afghanistan,Baloch,348
+Albania,Albanian,14551
+Albania,Egyptian,238
+Albania,Roma,143
+Belize,Mestizo/Spanish/Latino,2242
+Belize,Creole,1069
+Belize,Maya,654
+Belize,Garifuna,326
+Benin,Fon And Related..,5745
+Benin,Adja And Related,2174
+Benin,Yoruba And Related..,1936
+Benin,Bariba And Related..,1729
+Benin,Peulh And Related,1243
+Benin,Betamaribe And Related,1065
+Benin,Dendi And Related..,838
+Benin,"Yoa, Lokpa And Related.",441
+Burkina Faso,Mossi,9286
+Burkina Faso,Fulfulde/ Peulh,1152
+Burkina Faso,Bissa,967
+Burkina Faso,Gourounsi,924
+Burkina Faso,Gourmantche,779
+Burkina Faso,Bobo,577
+Burkina Faso,Dagara,532
+Burkina Faso,Senoufo,456
+Burkina Faso,Lobi,398
+Burkina Faso,Dioula,136
+Central African Republic,Gbaya,2555
+Central African Republic,Banda,1906
+Central African Republic,Mandja,865
+Central African Republic,Yakoma/Sango,858
+Central African Republic,Ngbaka/Bantou,708
+Central African Republic,Sara,585
+Central African Republic,Hausa,466
+Central African Republic,Mboum,432
+Central African Republic,Zandé/Nzakara,286
+Chad,Sara,4834
+Chad,Gorane,3319
+Chad,Arab,3281
+Chad,Kanembou/Bornou,1975
+Chad,Ouaddai/Mimi,1398
+Chad,Zaghawa,1180
+Chad,Bidio/Kenga/Dangleat,917
+Chad,Massa/Mousseye,778
+Chad,Moundang,753
+Chad,Dadjo/Mouro,632
+Chad,Boulala/Medego,596
+Chad,Marba/Lele,500
+Chad,Tama/Assongori,422
+Chad,Toupouri/Kera,352
+Chad,Gabri/Nangtchere,312
+Chad,Fulani,259
+Chad,Baguirmi/Barma,238
+Chad,Karo/Zime,198
+Chad,Mesmedje/Massalat,121
+Colombia,None Of The Above,30042
+Colombia,Indigenous,4264
+Colombia,Black/Mulato/Afro-Colombian/Afro-Descendant,3866
+Colombia,Raizal From Archipelago (San Andres),460
+Congo,Kongo,4408
+Congo,Tekes,1927
+Congo,Mbosi,1520
+Congo,Sangha-Likouala,1155
+Congo,Etrangers(Non Congolais),675
+Congo,Mbetis,563
+Cuba,White,5968
+Cuba,Negro,862
+Côte d’Ivoire,Not-Ivorian,3133
+Côte d’Ivoire,Baoulé,2826
+Côte d’Ivoire,Senoufo,1727
+Côte d’Ivoire,Malinke Ou Maninka,1292
+Côte d’Ivoire,Agni,590
+Côte d’Ivoire,Yacouba Ou Dan,503
+Côte d’Ivoire,Dioula,435
+Côte d’Ivoire,Lobi,402
+Côte d’Ivoire,Koyaka Ou Koyara,377
+Côte d’Ivoire,Gouro,345
+Côte d’Ivoire,Koulango,314
+Côte d’Ivoire,Bété,313
+Côte d’Ivoire,Akye Ou Attie,292
+Côte d’Ivoire,Guere,237
+Côte d’Ivoire,Djimini,172
+Côte d’Ivoire,Mahouka Ou Mahou,154
+Côte d’Ivoire,Tagbana,128
+Côte d’Ivoire,Abron,126
+Côte d’Ivoire,Wobe,126
+Côte d’Ivoire,Abbey,119
+Côte d’Ivoire,Adjoukrou,110
+Ethiopia,Amhara,3688
+Ethiopia,Oromo,3611
+Ethiopia,Tigrie,1905
+Ethiopia,Somalie,1463
+Ethiopia,Afar,947
+Ethiopia,Guragie,655
+Ethiopia,Sidama,355
+Ethiopia,Welaita,322
+Ethiopia,Berta,300
+Ethiopia,Nuwer,284
+Ethiopia,Anyiwak,252
+Ethiopia,Hadiya,230
+Ethiopia,Kefficho,209
+Ethiopia,Gumuz,195
+Ethiopia,Gamo,156
+Ethiopia,Silte,148
+Ethiopia,Kembata,126
+Ethiopia,Gedeo,119
+Gabon,Shira-Punu/Vili,2424
+Gabon,Fang,2185
+Gabon,Nzabi-Duma,1294
+Gabon,Kota-Kele,973
+Gabon,Mbede-Teke,516
+Gabon,Myene,489
+Gabon,Okande-Tsogho,303
+Gambia,Mandinka/Jahanka,3701
+Gambia,Fula/Tukulur/Lorobo,2569
+Gambia,Wollof,1679
+Gambia,Non-Gambian,1203
+Gambia,Sarahule,1143
+Gambia,Jola/Karoninka,782
+Gambia,Serere,376
+Gambia,Bambara,161
+Gambia,Manjago,105
+Georgia,Georgian,6045
+Georgia,Armenian,337
+Georgia,Azeri,294
+Ghana,Akan,5217
+Ghana,Mole-Dagbani,4024
+Ghana,Ewe,1641
+Ghana,Gurma,1484
+Ghana,Grusi,747
+Ghana,Guan,697
+Ghana,Ga/Dangme,593
+Ghana,Mande,479
+Guatemala,Ladina/Mestiza,15980
+Guatemala,Maya,9636
+Guatemala,Xinca,225
+Guinea,Fulani,2237
+Guinea,Malinké,1687
+Guinea,Soussou,1066
+Guinea,Kissi,365
+Guinea,Guerze,334
+Guinea,Toma,151
+Guinea-Bissau,Fula,2973
+Guinea-Bissau,Balanta,2297
+Guinea-Bissau,Mandinga,1306
+Guinea-Bissau,Papel,1211
+Guinea-Bissau,Beafada,749
+Guinea-Bissau,Manjaco,745
+Guinea-Bissau,Mancanha,279
+Guinea-Bissau,Felupe,119
+Guyana,East Indian,1988
+Guyana,Black,1519
+Guyana,Mixed Race,1187
+Guyana,Amerindian,1174
+Honduras,Ninguno/No Sabe/No Responde,15741
+Honduras,Lenca,1603
+Honduras,Otros Pueblos,689
+Honduras,Misquito,682
+Honduras,Garifuna,311
+Honduras,Maya Chorti,253
+Jordan,Jordanian,12390
+Jordan,Syrian,1703
+Kazakhstan,Kazakh,8467
+Kazakhstan,Russian,2727
+Kenya,Kalenjin,4976
+Kenya,Kikuyu,4435
+Kenya,Luhya,4145
+Kenya,Luo,3241
+Kenya,Kamba,2729
+Kenya,Somali,2368
+Kenya,Kisii,1793
+Kenya,Mijikenda/Swahili,1613
+Kenya,Meru,1479
+Kenya,Maasai,699
+Kenya,Embu,465
+Kenya,Taita/Taveta,386
+Kyrgyzstan,Kyrgyz,4410
+Kyrgyzstan,Uzbek,797
+Kyrgyzstan,Russian,198
+Lao PDR,Lao-Tai,11806
+Lao PDR,Mon-Khmer,6398
+Lao PDR,Hmong-Mien,2606
+Lao PDR,Chinese-Tibetan,1114
+Malawi,Chewa,1123
+Malawi,Tumbuka,846
+Malawi,Lomwe,507
+Malawi,Yao,425
+Malawi,Ngoni,422
+Malawi,Tonga,130
+Mali,Bambara,3286
+Mali,Peuhl,1310
+Mali,Sarakole/Soninke/Marka,1101
+Mali,Sonrai,987
+Mali,Touareg/Bella,948
+Mali,Sénoufo/Minianka,907
+Mali,Malinké,746
+Mali,Dogon,422
+Mali,Kassonke,311
+Mali,Bozo,306
+Mali,Bobo,140
+Nepal,Hill Chhetri,3493
+Nepal,Hill Janajati,3265
+Nepal,Hill Dalit,1700
+Nepal,Terai Janajati,1433
+Nepal,Hill Brahmin,1350
+Nepal,Terai Dalit,788
+Nepal,Muslim,518
+Nepal,Newar,393
+Nepal,Terai Brahmin/Chhetri,139
+Nigeria,Hausa,3289
+Nigeria,Yoruba,1821
+Nigeria,Igbo/Ibo,1782
+Nigeria,Fulani,1117
+Nigeria,Kanuri/Beriberi,366
+Nigeria,Tiv,328
+Nigeria,Ijaw/Izon,309
+Nigeria,Ibibio,267
+Nigeria,Idoma,150
+Nigeria,Karekare,140
+Nigeria,Igala,126
+Nigeria,Annang,113
+North Macedonia,Macedonian,10026
+North Macedonia,Albanian,4081
+Paraguay,Guaraní speaker,2910
+Paraguay,Bilingual (Guaraní/Spanish),2327
+Paraguay,Spanish speaker,1408
+Paraguay,Indigenous,405
+Philippines,Cebuano,6067
+Philippines,Tagalog,5108
+Philippines,Ilokano,2650
+Philippines,Hiligaynon/Ilonggo,2098
+Philippines,Bikolano,1755
+Philippines,Waray,1409
+Philippines,Tausog,915
+Philippines,Maranao,770
+Philippines,Kapampangan,627
+Philippines,Maguindanao,620
+Philippines,Boholano,405
+Philippines,Surigaonon,342
+Philippines,Sama /Bangingi / Badajo/ Laut/ Samal,324
+Philippines,Kankanaey,288
+Philippines,Pangasinan/ Paggalato,276
+Philippines,Akeanon,234
+Philippines,Manobo,216
+Philippines,Subanen/Subanon,207
+Philippines,Tuwali,193
+Philippines,Ivatan,192
+Philippines,Blaan,189
+Philippines,Yakan,184
+Philippines,Ifugao,183
+Philippines,Kalinga,178
+Philippines,Bantoanon,176
+Philippines,Zambageño - Chavacano,164
+Philippines,Mandaya,143
+Senegal,Poular,5921
+Senegal,Wolof,5488
+Senegal,Serer,2001
+Senegal,Mandinka,1353
+Senegal,Diola,683
+Senegal,Soninke,209
+Serbia,Serb,3248
+Serbia,Bosnian,132
+Serbia,Roma,100
+Sierra Leone,Mende,4979
+Sierra Leone,Temne,4886
+Sierra Leone,Limba,1355
+Sierra Leone,Korankoh,960
+Sierra Leone,Fullah,684
+Sierra Leone,Kono,668
+Sierra Leone,Mandingo,455
+Sierra Leone,Sherbro,296
+Sierra Leone,Loko,294
+Sierra Leone,Creole,103
+South Africa,Black/African,7359
+South Africa,Coloured,848
+South Africa,White,214
+Suriname,Hindustani,1800
+Suriname,Maroon,1688
+Suriname,Creole,1165
+Suriname,Javanese,957
+Suriname,Mixed Ethnicity,837
+Suriname,Indigenous/Amerindian,389
+Togo,Adja-Ewe/Mina,1562
+Togo,Kabye/Tem,1493
+Togo,Para-Gourma/Akan,974
+Togo,Stranger,171
+Togo,Akposso/Akebou,141
+Togo,Ana-Ife,113
+Uganda,Baganda,2436
+Uganda,Banyankore,1687
+Uganda,Iteso,1637
+Uganda,Bakiga,1419
+Uganda,Lango,1298
+Uganda,Basoga,1161
+Uganda,Acholi,1081
+Uganda,Bagisu,991
+Uganda,Banyoro,609
+Uganda,Alur,546
+Uganda,Lugbara,539
+Uganda,Batoro,499
+Uganda,Bakonzo,415
+Uganda,Banyarwanda,345
+Uganda,Jopadhola,338
+Uganda,Bagwere,320
+Uganda,Bafumbira,319
+Uganda,Banyole,312
+Uganda,Karimojong,283
+Uganda,Basamia,278
+Uganda,Madi,200
+Uganda,Aringa,193
+Uganda,Kumam,161
+Uganda,Jie,122
+Uganda,Dodoth,120
+Uganda,Sabiny,112

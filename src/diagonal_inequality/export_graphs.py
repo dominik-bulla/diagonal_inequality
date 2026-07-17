@@ -28,6 +28,7 @@ from .config import (
     OUT_SPINE_PLOT_PDF,
     OUT_SPINE_PLOT_TIFF,
     OUT_SPINE_PLOT_PNG,
+    OUT_SPINE_PLOT_TABLE,
     OUT_HEATMAP_PDF,
     OUT_HEATMAP_TIFF,
     OUT_HEATMAP_PNG,
@@ -287,44 +288,74 @@ def graphs_wealth_gaps_gini(data: dict[str, dict[str, Any]]) -> None:
 
 def spine_plot_country(
     country: str,
-    df: pd.DataFrame,
+    crosstab: pd.DataFrame,
     i: int,
-    wealth_col: str = "wealth_index",
-    eth_col: str = "ethnicity",
-    wealth_order: tuple[str, ...] = ("poorest", "poorer", "middle", "richer", "richest"),
+    wealth_order: tuple[str, ...] = (
+        "poorest",
+        "poorer",
+        "middle",
+        "richer",
+        "richest",
+    ),
 ) -> None:
-    """Create one spine plot showing wealth-quintile composition within ethnicity."""
-    plot_df = df[[eth_col, wealth_col]].dropna(subset=[eth_col, wealth_col]).copy()
-    crosstab = pd.crosstab(plot_df[eth_col], plot_df[wealth_col])
+    """Create a weighted spine plot of wealth-quintile composition by ethnicity."""
 
-    for category in wealth_order:
-        if category not in crosstab.columns:
-            crosstab[category] = 0
-    crosstab = crosstab[list(wealth_order)]
+    # The stored crosstab has:
+    # rows = wealth quintiles
+    # columns = ethnicities
+    weighted_table = crosstab.copy()
 
-    row_totals = crosstab.sum(axis=1).astype(float).replace(0, np.nan)
+    # Ensure that all wealth quintiles are present and correctly ordered.
+    weighted_table = weighted_table.reindex(wealth_order, fill_value=0)
+
+    # Transpose to:
+    # rows = ethnicities
+    # columns = wealth quintiles
+    weighted_table = weighted_table.T
+
+    row_totals = weighted_table.sum(axis=1).astype(float).replace(0, np.nan)
     valid_rows = row_totals.notna()
-    crosstab = crosstab.loc[valid_rows]
+
+    weighted_table = weighted_table.loc[valid_rows]
     row_totals = row_totals.loc[valid_rows]
 
-    proportions = crosstab.div(row_totals, axis=0).fillna(0.0)
+    # Weighted within-ethnicity proportions.
+    proportions = weighted_table.div(row_totals, axis=0).fillna(0.0)
+
+    # Sort ethnicities by their weighted share in the poorest quintile.
     proportions = proportions.sort_values(by="poorest", ascending=False)
     row_totals = row_totals.loc[proportions.index]
 
+    # Export to CSV
+    output = proportions.copy()
+    output.insert(0, "n", row_totals.astype(int))
+    output.index.name = "ethnicity"
+    out_path = OUT_SPINE_PLOT_TABLE.with_name(
+            OUT_SPINE_PLOT_TABLE.name.format(i=i, country=country)
+        )
+    pd.DataFrame(output).to_csv(
+            out_path,
+            index=True,
+            encoding="utf-8-sig",
+        )
+
+    # Widths represent each ethnicity's weighted population share.
     widths = row_totals / row_totals.sum()
     positions = widths.cumsum() - widths
-    centers = positions + (widths / 2)
+    centers = positions + widths / 2
 
     _apply_publication_style()
     fig, ax = plt.subplots(figsize=(10.5, 6.5))
 
     bottoms = np.zeros(len(proportions), dtype=float)
-    for idx, category in enumerate(proportions.columns):
-        heights = proportions[category].to_numpy(float)
+
+    for idx, category in enumerate(wealth_order):
+        heights = proportions[category].to_numpy(dtype=float)
+
         ax.bar(
-            x=positions.to_numpy(float),
+            x=positions.to_numpy(dtype=float),
             height=heights,
-            width=widths.to_numpy(float),
+            width=widths.to_numpy(dtype=float),
             bottom=bottoms,
             align="edge",
             label=category,
@@ -332,77 +363,101 @@ def spine_plot_country(
             edgecolor="black",
             linewidth=0.6,
         )
+
         bottoms += heights
 
-    ax.set_xticks(centers.to_numpy(float))
-    ax.set_xticklabels(proportions.index.tolist(), rotation=45, ha="right")
+    ax.set_xticks(centers.to_numpy(dtype=float))
+    ax.set_xticklabels(
+        proportions.index.astype(str).tolist(),
+        rotation=45,
+        ha="right",
+    )
     ax.set_ylabel("Share within ethnicity")
 #    ax.set_title(f"Wealth distribution by ethnicity: {country}")
     ax.set_ylim(0, 1)
     ax.set_yticks(np.linspace(0, 1, 6))
+
     _finalize_axes(ax)
-    ax.legend(title="Wealth quintile", frameon=False, ncol=1, bbox_to_anchor=(1.02, 1), loc="upper left")
+
+    ax.legend(
+        title="Wealth quintile",
+        frameon=False,
+        ncol=1,
+        bbox_to_anchor=(1.02, 1),
+        loc="upper left",
+    )
 
     safe_country = _safe_filename(country)
+
     _save_figure(
         fig,
-        OUT_SPINE_PLOT_PDF.with_name(OUT_SPINE_PLOT_PDF.name.format(i=i, country=safe_country)),
-        OUT_SPINE_PLOT_TIFF.with_name(OUT_SPINE_PLOT_TIFF.name.format(i=i, country=safe_country)),
-        OUT_SPINE_PLOT_PNG.with_name(OUT_SPINE_PLOT_PNG.name.format(i=i, country=safe_country)),
+        OUT_SPINE_PLOT_PDF.with_name(
+            OUT_SPINE_PLOT_PDF.name.format(i=i, country=safe_country)
+        ),
+        OUT_SPINE_PLOT_TIFF.with_name(
+            OUT_SPINE_PLOT_TIFF.name.format(i=i, country=safe_country)
+        ),
+        OUT_SPINE_PLOT_PNG.with_name(
+            OUT_SPINE_PLOT_PNG.name.format(i=i, country=safe_country)
+        ),
     )
 
 
 def graphs_spine_plots(
     data: dict[str, dict[str, Any]],
-    wealth_col: str = "wealth_index",
-    eth_col: str = "ethnicity",
-    wealth_order: tuple[str, ...] = ("poorest", "poorer", "middle", "richer", "richest"),
+    wealth_order: tuple[str, ...] = (
+        "poorest",
+        "poorer",
+        "middle",
+        "richer",
+        "richest",
+    ),
 ) -> None:
-    """Create one spine plot per country."""
+    """Create one weighted spine plot per country."""
     for i, (country, info) in enumerate(_iter_country_items(data), start=1):
-        df = info.get("dataset")
-        if df is None or df.empty:
+        crosstab = info.get("crosstab")
+
+        if crosstab is None or crosstab.empty:
             continue
+
         spine_plot_country(
             country=country,
-            df=df,
+            crosstab=crosstab,
             i=i,
-            wealth_col=wealth_col,
-            eth_col=eth_col,
             wealth_order=wealth_order,
         )
 
 
 def heatmap_country(
-    df: pd.DataFrame,
+    distribution_across_quintiles: pd.DataFrame,
     country: str,
     i: int,
     distribution_wealth: pd.Series | pd.DataFrame | dict[str, float] | None = None,
-    weight_col: str = "sampling_weight_women",
-    eth_col: str = "ethnicity",
-    wealth_col: str = "wealth_index",
+    wealth_order: tuple[str, ...] = (
+        "poorest",
+        "poorer",
+        "middle",
+        "richer",
+        "richest",
+    ),
 ) -> None:
     """Create a weighted ethnicity-by-wealth heatmap for one country.
 
     Rows represent ethnic groups, columns represent wealth quintiles, and values
-    are row percentages within each ethnicity.
+    are weighted percentages within each ethnicity.
     """
-    plot_df = df[[eth_col, wealth_col, weight_col]].dropna(subset=[eth_col, wealth_col, weight_col]).copy()
+    # Stored table has:
+    # rows = wealth quintiles
+    # columns = ethnicities
+    percentages = distribution_across_quintiles.copy()
 
-    weighted_table = pd.pivot_table(
-        plot_df,
-        index=eth_col,
-        columns=wealth_col,
-        values=weight_col,
-        aggfunc="sum",
-        fill_value=0,
-        observed=False,
-    )
+    # Ensure quintiles are present and correctly ordered.
+    percentages = percentages.reindex(wealth_order, fill_value=0)
 
-    for category in WEALTH_ORDER:
-        if category not in weighted_table.columns:
-            weighted_table[category] = 0
-    weighted_table = weighted_table[WEALTH_ORDER]
+    # Convert to:
+    # rows = ethnicities
+    # columns = wealth quintiles
+    percentages = percentages.T
 
     if distribution_wealth is not None:
         if isinstance(distribution_wealth, pd.DataFrame):
@@ -412,16 +467,21 @@ def heatmap_country(
         else:
             national_series = distribution_wealth.copy()
 
-        national_series = pd.Series(national_series).reindex(WEALTH_ORDER).fillna(0)
-        weighted_table.loc["National"] = national_series.values
-        weighted_table = weighted_table.loc[[idx for idx in weighted_table.index if idx != "National"] + ["National"]]
+        national_series = (
+            pd.Series(national_series, dtype=float)
+            .reindex(wealth_order)
+            .fillna(0)
+        )
 
-    row_sums = weighted_table.sum(axis=1).replace(0, np.nan)
-    percentages = (weighted_table.div(row_sums, axis=0) * 100).fillna(0).round(1)
+        percentages.loc["National"] = national_series
+
+    percentages = percentages.astype(float).round(1)
 
     _apply_publication_style()
+
     fig_height = max(4.5, 0.35 * len(percentages.index) + 1.5)
     fig, ax = plt.subplots(figsize=(8.5, fig_height))
+
     image = ax.imshow(
         percentages.to_numpy(),
         aspect="auto",
@@ -434,16 +494,19 @@ def heatmap_country(
     ax.set_xticks(np.arange(len(percentages.columns)))
     ax.set_xticklabels(["Q1", "Q2", "Q3", "Q4", "Q5"])
     ax.set_yticks(np.arange(len(percentages.index)))
-    ax.set_yticklabels(percentages.index.tolist())
+    ax.set_yticklabels(percentages.index.astype(str).tolist())
     ax.set_xlabel("Wealth quintile")
     ax.set_ylabel("Ethnicity")
     ax.set_title(f"Wealth distribution by ethnicity: {country}")
+
     _finalize_axes(ax, add_y_grid=False)
 
-    values = percentages.to_numpy()
+    values = percentages.to_numpy(dtype=float)
+
     for row in range(values.shape[0]):
         for col in range(values.shape[1]):
             value = values[row, col]
+
             ax.text(
                 col,
                 row,
@@ -458,33 +521,44 @@ def heatmap_country(
     cbar.set_label("Share within ethnicity (%)")
 
     safe_country = _safe_filename(country)
+
     _save_figure(
         fig,
-        OUT_HEATMAP_PDF.with_name(OUT_HEATMAP_PDF.name.format(i=i, country=safe_country)),
-        OUT_HEATMAP_TIFF.with_name(OUT_HEATMAP_TIFF.name.format(i=i, country=safe_country)),
-        OUT_HEATMAP_PNG.with_name(OUT_HEATMAP_PNG.name.format(i=i, country=safe_country)),
+        OUT_HEATMAP_PDF.with_name(
+            OUT_HEATMAP_PDF.name.format(i=i, country=safe_country)
+        ),
+        OUT_HEATMAP_TIFF.with_name(
+            OUT_HEATMAP_TIFF.name.format(i=i, country=safe_country)
+        ),
+        OUT_HEATMAP_PNG.with_name(
+            OUT_HEATMAP_PNG.name.format(i=i, country=safe_country)
+        ),
     )
 
 
 def graphs_heatmaps(
     data: dict[str, dict[str, Any]],
-    weight_col: str = "sampling_weight_women",
-    eth_col: str = "ethnicity",
-    wealth_col: str = "wealth_index",
+    wealth_order: tuple[str, ...] = (
+        "poorest",
+        "poorer",
+        "middle",
+        "richer",
+        "richest",
+    ),
 ) -> None:
     """Create one weighted heatmap per country."""
     for i, (country, info) in enumerate(_iter_country_items(data), start=1):
-        df = info.get("dataset")
-        if df is None or df.empty:
+        distribution = info.get("distribution_across_quintiles")
+
+        if distribution is None or distribution.empty:
             continue
+
         heatmap_country(
-            df=df,
+            distribution_across_quintiles=distribution,
+            distribution_wealth=info.get("distribution_wealth"),
             country=country,
             i=i,
-            distribution_wealth=info.get("distribution_wealth"),
-            weight_col=weight_col,
-            eth_col=eth_col,
-            wealth_col=wealth_col,
+            wealth_order=wealth_order,
         )
 
 

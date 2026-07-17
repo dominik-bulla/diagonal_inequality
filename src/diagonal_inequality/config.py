@@ -24,7 +24,7 @@ import numpy as np
 # Helpers
 # -----------------------------------------------------------------------------
 
-RUN_DATE = "20260401"
+RUN_DATE = "20260717"
 
 
 def _env_path(var_name: str, default: Path | str) -> Path:
@@ -111,6 +111,8 @@ OUT_ETHNIC_WEALTH_GAPS_GINI_TABLE = (
 OUT_SPINE_PLOT_PDF = RESULTS_GRAPHS_DIR / "02.{i}_spine_plot_{country}.pdf"
 OUT_SPINE_PLOT_TIFF = RESULTS_GRAPHS_DIR / "02.{i}_spine_plot_{country}.tiff"
 OUT_SPINE_PLOT_PNG = RESULTS_GRAPHS_DIR / "02.{i}_spine_plot_{country}.png"
+
+OUT_SPINE_PLOT_TABLE = RESULTS_TABLE_DIR / "08.{i}_spine_plot_table__{country}.csv"
 
 OUT_HEATMAP_PDF = RESULTS_GRAPHS_DIR / "03.{i}_heatmap_{country}.pdf"
 OUT_HEATMAP_TIFF = RESULTS_GRAPHS_DIR / "03.{i}_heatmap_{country}.tiff"
